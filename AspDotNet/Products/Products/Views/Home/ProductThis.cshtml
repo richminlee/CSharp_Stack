@@ -1,0 +1,50 @@
+@model ShowAllWrapper
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col text-center"><h1>@Model.ThisProduct.Name</h1></div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10"><h2>Categories:</h2></div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <ul>
+                            @foreach(var cat in Model.ThisProduct.CategoriesfromProduct)
+                            {
+                                <li>@cat.Category.Name</li>
+                            }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <form asp-action="AddCategory" asp-controller="Home" asp-route-productid="@Model.ThisProduct.ProductId" method="post">
+                        <div class="row mt-2 mb-2">
+                                    <div class="col"><label asp-for="Association.CategoryId"><h2>Add Category: </h2></label></div> 
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col">
+
+                                <select style="width: 200px;" asp-for="Association.CategoryId">
+                                    @foreach(var i in Model.CatsNotInProd)
+                                        {
+                                            <option value="@i.CategoryId">@i.Name</option>
+                                        } 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col-2 m-2"></div>
+                            <div class="col-4"><input value="Add" type="submit"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

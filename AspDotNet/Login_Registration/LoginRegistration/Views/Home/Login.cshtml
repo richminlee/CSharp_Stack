@@ -1,0 +1,34 @@
+@model LoginUser
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-11 mt-4 text-center"><h1>Login to this Cool Site!</h1></div>
+                <div class="col-1"><a href="/">Register</a></div>
+            </div>
+
+            <form asp-action="Logged" asp-controller="Home" method="post">
+                <div class="row">
+                    <div class="col mt-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <br><span class="row" asp-validation-for="Email"></span><br>
+                                <div class="col"><label asp-for="Email"></label></div> 
+                                <div class="col"><input style="width: 200px;" asp-for="Email"></div>
+                                <br><span class="row" asp-validation-for="Password"></span><br>
+                                <div class="col"><label asp-for="Password"></label></div> 
+                                <div class="col"><input style="width: 200px;" asp-for="Password"></div>
+                                <div class="row">
+                                    <div class="col m-3">
+                                        <input value="Sign in Now" type="submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

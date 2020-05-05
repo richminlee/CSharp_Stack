@@ -1,0 +1,59 @@
+@model Product
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col text-center"><h1>Products | <a href="/category">Categories</a></h1></div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10"><h2>New Products</h2></div>
+                    </div>
+                    <form asp-action="NewProduct" asp-controller="Home" method="post">
+                        <div class="row mt-5 mb-2">
+                                <span class="row" asp-validation-for="Name"></span>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                                <div class="col-3"><label asp-for="Name"></label></div> 
+                                <div class="col-4"><input style="width: 200px;" asp-for="Name"></div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                                <span class="row" asp-validation-for="Description"></span>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                                <div class="col-3"><label asp-for="Description"></label></div>
+                                <div class="col-4"><textarea style="resize: none;" asp-for="Description" cols="25" rows="3"></textarea></div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                                <span class="row" asp-validation-for="Price"></span>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                                <div class="col-3"><label asp-for="Price"></label></div> 
+                                <div class="col-4"><input style="width: 200px;" asp-for="Price"></div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col-2 m-2"></div>
+                            <div class="col-4"><input value="Create" type="submit"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10"><h2>Existing Products</h2></div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                                @foreach(var l in ViewBag.Prod)
+                                {
+                                    <p><a href="/product/@l.ProductId">@l.Name</a></p>
+                                }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

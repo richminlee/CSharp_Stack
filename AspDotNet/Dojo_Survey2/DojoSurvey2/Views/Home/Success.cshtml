@@ -1,0 +1,35 @@
+@model Survey
+
+    <div class="container">
+        <div class="row m-4">
+            <div class="col-3"></div>
+            <div class="col-5 border border-dark">
+                <div class="row m-4">
+                    <div class="col-12"><h3>Submitted Info:</h3></div>
+                </div>
+                <div class="row m-4">
+                    <div class="col-6">Name: </div>
+                    <div class="col-6">@Model.Name</div>
+
+                </div>
+                <div class="row m-4">
+                    <div class="col-6">Dojo Location:</div>
+                    <div class="col-6">@Model.Location</div>
+
+                </div>
+                <div class="row m-4">
+                    <div class="col-6">Favorite Language:</div>
+                    <div class="col-6">@Model.Language</div>
+
+                </div>                
+                <div class="row m-4">
+                    <div class="col-6">Comment:</div>
+                    <div class="col-6">@Model.Comment</div>
+
+                </div>
+                <div style="float: right;"  class="row m-4">
+                    <button><a href="../" type="submit">Go Back</a></button>
+                </div>
+            </div>
+        </div>
+    </div>

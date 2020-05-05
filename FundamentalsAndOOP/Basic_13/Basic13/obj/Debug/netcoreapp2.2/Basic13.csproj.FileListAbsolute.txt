@@ -1,0 +1,11 @@
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\bin\Debug\netcoreapp2.2\Basic13.deps.json
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\bin\Debug\netcoreapp2.2\Basic13.runtimeconfig.json
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\bin\Debug\netcoreapp2.2\Basic13.runtimeconfig.dev.json
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\bin\Debug\netcoreapp2.2\Basic13.dll
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\bin\Debug\netcoreapp2.2\Basic13.pdb
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\obj\Debug\netcoreapp2.2\Basic13.csprojAssemblyReference.cache
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\obj\Debug\netcoreapp2.2\Basic13.csproj.CoreCompileInputs.cache
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\obj\Debug\netcoreapp2.2\Basic13.AssemblyInfoInputs.cache
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\obj\Debug\netcoreapp2.2\Basic13.AssemblyInfo.cs
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\obj\Debug\netcoreapp2.2\Basic13.dll
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\Basic13\obj\Debug\netcoreapp2.2\Basic13.pdb

@@ -1,0 +1,76 @@
+@model ThisWrapper
+<header>
+    <div class="row border-bottom border-dark mb-4">
+        <div class="col-8"><h1>Dojo Activity Center</h1></div>
+        <div class="col-3">Welcome, @Model.ThisUser.Name </div>
+
+        <div class="col-1"><a href="logout">Log Out</a></div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Activity</th>
+                            <th>Date and Time</th>
+                            <th>Duration</th>
+                            <th>Event Coordinator</th>
+                            <th>No. of Participants</th>
+                            <th>Actions</th>
+                        </tr>
+                        @foreach(var l in Model.AllSports.OrderByDescending(l => l.CreatedAt))
+                        {
+                            if(l.Date > DateTime.Now)
+                            {
+                            <tr>
+                                <td><a href="/sport/@l.SportId">@l.SportName</a></td>
+                                <td>@l.Date</td>
+                                    @* .ToString("MM/dd/yyyy") </td> *@
+                                    @* @l.Time.ToString("hh:mm tt")</td> *@
+                                <td>@l.Duration @l.DurationHour</td>
+                                <td>@l.Creator.Name</td>
+                                <td>@l.UsersfromSport.Count()</td>
+                                <td>
+                                    @if(@l.Creator == @Model.ThisUser)
+                                    {
+                                        <form asp-action="Delete" asp-controller="Home" asp-route-sportid="@l.SportId" method="post">
+                                            <input type="submit" value="Delete">
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        @if(l.UsersfromSport.FirstOrDefault(u => u.UserId == Model.ThisUser.UserId) ==null)
+                                        {
+                                            <form asp-action="Join" asp-controller="Home" asp-route-sportid="@l.SportId" method="post">
+                                                <input type="hidden"asp-for="Association.UserId" value="@Model.ThisUser.UserId">
+                                                <input type="submit" value="Join">
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form asp-action="Leave" asp-controller="Home" asp-route-sportid="@l.SportId" method="post">
+                                                <input type="hidden"asp-for="Association.UserId" value="@Model.ThisUser.UserId">
+                                                <input type="submit" value="Leave">
+                                            </form>
+                                        }
+                                    }
+                                    
+
+                                </td>
+                            </tr>
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="/sport">Add New Activity</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

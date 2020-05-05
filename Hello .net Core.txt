@@ -1,0 +1,14 @@
+dotnet --version
+2.2.107
+mkdir FirstCSharp
+cd FirstCSharp
+dotnet new console --force
+The template "Console Application" was created successfully.
+
+Processing post-creation actions...
+Running 'dotnet restore' on C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\FirstCSharp\FirstCSharp.csproj...
+  Restore completed in 34.28 ms for C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\FirstCSharp\FirstCSharp.csproj.
+
+Restore succeeded.
+dotnet run
+Hello World!

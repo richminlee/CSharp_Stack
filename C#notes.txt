@@ -1,0 +1,332 @@
+//start new project with project name FirstCSharp
+dotnet new console -o FirstCSharp
+__________________________________________________________________
+//anytime we add or remove packages
+dotnet restore
+____________________________________________________________________
+//run the c# program
+dotnet run
+__________________________________________________________________
+//conditions
+int numRings = 5;
+if (numRings >= 5)
+{
+    Console.WriteLine("You are welcome to join the party");
+}
+else if (numRings > 2)
+{
+    Console.WriteLine($"Decent...but {numRings} rings aren't enough");
+}
+else
+{
+    Console.WriteLine("Go win some more rings");
+}
+___________________________________________________________________
+//for loops
+// loop from 1 to 5 including 5
+for (int i = 1; i <= 5; i++)
+{
+    Console.WriteLine(i);
+}
+// loop from 1 to 5 excluding 5
+for (int i = 1; i < 5; i++)
+{
+    Console.WriteLine(i);
+}
+//or
+int start = 0;
+int end = 5;
+// loop from start to end including end
+for (int i = start; i <= end; i++)
+{
+    Console.WriteLine(i);
+}
+// loop from start to end excluding end
+for (int i = start; i < end; i++)
+{
+    Console.WriteLine(i);
+}
+________________________________________________________________________
+//while loops
+int i = 1;
+while (i < 6)
+{
+    Console.WriteLine(i);
+    i = i + 1;
+}
+_______________________________________________________________________
+
+Random rand = new Random();
+for(int val = 0; val < 10; val++)
+{
+    //Prints the next random value between 2 and 8
+    Console.WriteLine(rand.Next(2,8));
+}
+_____________________________________________________________________
+.Next()	                Will return a 32-bit signed integer that is greater than or equal to 0 and less than MaxValue (a C# constant)
+.Next(Int32)	        Will return a 32-bit signed integer that is greater than or equal to 0 and less than the provided parameter
+.Next(Int32, Int32)	Will return a 32-bit signed integer that is greater than or equal to the first parameter and less than the second parameter
+.NextDouble()	        Returns a random floating-point number that is greater than or equal to 0.0, and less than 1.0.
+_________________________________________________________________________________________________________________________________________________________
+// Declaring an array of length 5, initialized by default to all zeroes
+int[] numArray = new int[5];
+// Declaring an array with pre-populated values
+// For Arrays initialized this way, the length is determined by the size of the given data
+int[] numArray2 = {1,2,3,4,6};
+______________________________________________________________________________________________________________________________________________________________
+int[] array3;
+array3 = new int[] {1,3,5,7,9};
+___________________________________________________________
+int[] arrayOfInts = {1, 2, 3, 4, 5};
+Console.WriteLine(arrayOfInts[0]);    // The first number lives at index 0.
+Console.WriteLine(arrayOfInts[1]);    // The second number lives at index 1.
+Console.WriteLine(arrayOfInts[2]);    // The third number lives at index 2.
+Console.WriteLine(arrayOfInts[3]);    // The fourth number lives at index 3.
+Console.WriteLine(arrayOfInts[4]);    // The fifth and final number lives at index 4.
+__________________________________________________________________________________________
+int[] arr = {1, 2, 3, 4};
+Console.WriteLine($"The first number of the arr is {arr[0]}"); 
+arr[0] = 8;
+Console.WriteLine($"The first number of the arr is now {arr[0]}");
+// The array has now changed!
+_____________________________________________________________________
+string[] myCars = new string[] { "Mazda Miata", "Ford Model T", "Dodge Challenger", "Nissan 300zx"};
+// The 'Length' property tells us how many values are in the Array (4 in our example here). 
+// We can use this to determine where the loop ends: Length-1 is the index of the last value. 
+for (int idx = 0; idx < myCars.Length; idx++)
+{
+    Console.WriteLine($"I own a {myCars[idx]}");
+}
+__________________________________________________________________________
+string[] myCars = new string[] { "Mazda Miata", "Ford Model T", "Dodge Challenger", "Nissan 300zx"}; 
+foreach (string car in myCars)
+{
+    // We no longer need the index, because variable 'car' already represents each indexed value
+    Console.WriteLine($"I own a {car}");
+}
+___________________________________________________________________________________________________
+using System.Collections.Generic;
+____________________________________________________________________________________________
+//Initializing an empty list of Motorcycle Manufacturers
+List<string> bikes = new List<string>();
+//Use the Add function in a similar fashion to push
+bikes.Add("Kawasaki");
+bikes.Add("Triumph");
+bikes.Add("BMW");
+bikes.Add("Moto Guzzi");
+bikes.Add("Harley Davidson");
+bikes.Add("Suzuki");
+//Accessing a generic list value is the same as you would an array
+Console.WriteLine(bikes[2]); //Prints "BMW"
+Console.WriteLine($"We currently know of {bikes.Count} motorcycle manufacturers.");
+_________________________________________________________________________________________________
+//Initializing an empty list of Motorcycle Manufacturers
+List<string> bikes = new List<string>();
+//Use the Add function in a similar fashion to push
+bikes.Add("Kawasaki");
+bikes.Add("Triumph");
+bikes.Add("BMW");
+bikes.Add("Moto Guzzi");
+bikes.Add("Harley Davidson");
+bikes.Add("Suzuki");
+//Accessing a generic list value is the same as you would an array
+Console.WriteLine(bikes[2]); //Prints "BMW"
+Console.WriteLine($"We currently know of {bikes.Count} motorcycle manufacturers.");
+_____________________________________________________________________________________________
+Dictionary<string,string> profile = new Dictionary<string,string>();
+//Almost all the methods that exists with Lists are the same with Dictionaries
+profile.Add("Name", "Speros");
+profile.Add("Language", "PHP");
+profile.Add("Location", "Greece");
+Console.WriteLine("Instructor Profile");
+Console.WriteLine("Name - " + profile["Name"]);
+Console.WriteLine("From - " + profile["Location"]);
+Console.WriteLine("Favorite Language - " + profile["Language"]);
+_____________________________________________________________________________________
+foreach (KeyValuePair<string,string> entry in profile)
+{
+ Console.WriteLine(entry.Key + " - " + entry.Value);
+}
+___________________________________________________________________
+int IntegerValue = 65;
+double DoubleValue = IntegerValue;
+
+double DoubleValue = 3.14159265358;
+int IntegerValue = (int)DoubleValue;
+// IntegerValue == 3
+
+double floatNum = 7.76; 
+int num = floatNum;
+//This will cause a compiler type-mismatch error!!
+int num = (int)floatNum;
+//Floating point to integer conversion truncates all numbers after the decimal
+//As such num now evaluated to 7
+
+
+//Converting an integer to a string
+int num = 7;
+string numAsString = num.ToString(); //Evaluates as "7"
+______________________________________________________________________________________
+using System;
+using System.Collections.Generic;
+namespace ConsoleApplication
+{
+    public class Program
+    {
+        public static void SayHello()
+        {
+            Console.WriteLine("Hello how are you doing today?");
+        }
+        public static void Main(string[] args)
+        {
+            SayHello();
+        }
+    }
+}
+__________________________________________________________________________________
+public static void SayHello(string firstName)
+{
+    Console.WriteLine($"Hello, {firstName}, how are you doing today?");
+}
+SayHello("Andrew");
+___________________________________________________________________________________
+
+public static string SayHello(string firstName = "buddy")
+{
+    return $"Hey {firstName}";
+}
+string greeting;
+greeting = SayHello();
+Console.WriteLine(greeting);
+_________________________________________________________________________________
+//Box some string data into a variable
+object BoxedData = "This is clearly a string";
+//Make sure it is the type you need before proceeding
+if (BoxedData is int) {
+    //This shouldn't run
+    Console.WriteLine("I guess we have an integer value in this box?");
+}
+if (BoxedData is string) {
+    Console.WriteLine("It is totally a string in the box!");
+}
+_____________________________________________________________________________
+object ActuallyString = "a string";
+string ExplicitString = ActuallyString as string;
+ 
+// THIS WON'T WORK!!
+object ActuallyInt = 256;
+int ExplicitInt = ActuallyInt as int;
+_____________________________________________________________________________
+//Make sure to include the Vehicle class separate from the Program class
+public class Vehicle
+{
+    //Accessibility of class members is defaulted to private
+    //so we must add the public keyword to anything we
+    //want to allow outside access to.
+    
+    // this unassigned integer will default to 0
+    public int NumPassengers;
+}
+_________________________________________________________________________
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Notice the type for the new object reference
+        // is the same as the class name
+        Vehicle myVehicle = new Vehicle(7);
+        Console.WriteLine($"My vehicle is holding {myVehicle.NumPassengers} people");
+    }
+}
+________________________________________________________________________________________
+public class Vehicle
+{
+     public int NumPassengers;
+     //Notice the Constructor function doesn't need
+     //a return type or the static keyword
+     public Vehicle(int val)
+     {
+          NumPassengers = val;
+     }
+}
+_________________________________________________________________________________________
+public class Vehicle
+{
+     public int NumPassengers;
+    
+     public Vehicle()
+     {
+          NumPassengers = 5;
+     }
+}
+___________________________________________________________________________________________
+class Vehicle
+{
+    public int MaxNumPassengers;
+    public string Color;
+    public double MaxSpeed;
+}
+_____________________________________________________________________________________________
+class Vehicle
+{
+    // vehicleObject.MakeNoise("HOOONK!") will invoke this one
+    public void MakeNoise(string noise)
+    {
+    	Console.WriteLine(noise);
+    }
+    
+    // vehicleObject.MakeNoise() will invoke this one
+    public void MakeNoise()
+    {
+    	Console.WriteLine("BEEP!");
+    }
+}
+_____________________________________________________________________________________________
+class Vehicle
+{
+    public string ColorProp
+    {
+        get
+        {
+    	    // Simply referencing the property will invoke the "getter", such as:
+    	    // Console.WriteLine(vehicleObject.ColorProp);
+    	    // and will return the following:
+    
+            return $"This thing is {Color}";
+        }
+        set
+        {
+    	    // Assigning a value to a property, such as:
+    	    // vehicleObject.ColorProp = "Blue";
+    	    // will invoke the "setter", and the "value" keyword will become the assigned value
+    	    // ("Blue" in this example)
+    
+            Color = value;
+        }
+    }
+}
+_________________________________________________________________________________________________
+class Vehicle
+{
+    public string Name {get;set;}
+}
+______________________________________
+class Vehicle
+{
+    private int maxNumPassengers;
+    private string color;
+    public int MaxNumPassengers
+    {
+        get { return maxNumPassengers; }
+    }
+    public string Color
+    {
+        get { return color; }
+    }
+    public Vehicle(int maxPass, string col)
+    {
+        maxNumPassengers = maxPass;
+        color = col;
+    }
+}
+____________________________________________________________________________________________

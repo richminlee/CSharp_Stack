@@ -1,0 +1,46 @@
+﻿@model User
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-11 mt-4 text-center"><h1>Register to this Cool Site!</h1></div>
+                <div class="col-1"><a href="/login">Login</a></div>
+            </div>
+
+
+            <form asp-action="New" asp-controller="Home" method="post">
+                <div class="row">
+                    <div class="col mt-4">
+                        <div class="row">
+                            <div class="col-4">
+                            <br><span class="row" asp-validation-for="FirstName"></span><br>
+                            <div class="col"><label asp-for="FirstName"></label></div> 
+                            <div class="col"><input style="width: 200px;" asp-for="FirstName"></div>
+                            <br><span class="row" asp-validation-for="LastName"></span><br>
+                            <div class="col"><label asp-for="LastName"></label></div> 
+                            <div class="col"><input style="width: 200px;" asp-for="LastName"></div>
+                            <br><span class="row" asp-validation-for="Email"></span><br>
+                            <div class="col"><label asp-for="Email"></label></div> 
+                            <div class="col"><input style="width: 200px;" asp-for="Email"></div>
+                            <div  class="row m-3">
+                            <input value="Sign up Now" type="submit">
+                            </div>
+                            </div>
+                            <div class="col-4">
+                            <br><span class="row" asp-validation-for="Password"></span><br>
+                            <div class="col"><label asp-for="Password"></label></div> 
+                            <div class="col"><input style="width: 200px;" asp-for="Password"></div>
+                            <br><span class="row" asp-validation-for="Confirm"></span><br>
+                            <div class="col"><label asp-for="Confirm"></label></div> 
+                            <div class="col"><input style="width: 200px;" asp-for="Confirm"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

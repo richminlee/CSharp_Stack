@@ -1,0 +1,69 @@
+﻿@model ThisWrapper
+<div class="container">
+    <div class="row">
+        <div class="col"><h1>Welcome to the Dojo Activity Center</h1>
+            <div class="row">
+                <div class="col mt-4 border border-dark">Register
+                    <form asp-action="New" asp-controller="Home" method="post">
+                        <div class="row">
+                            <span asp-validation-for="ThisUser.Name"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="ThisUser.Name"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="ThisUser.Name"></div>
+                        </div>
+                        <div class="row">
+                            <span asp-validation-for="ThisUser.Email"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="ThisUser.Email"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="ThisUser.Email"></div>
+                        </div>
+                        <div class="row">
+                            <span asp-validation-for="ThisUser.Password"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="ThisUser.Password"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="ThisUser.Password"></div>
+                        </div>
+                        <div class="row">
+                            <span asp-validation-for="ThisUser.Confirm"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="ThisUser.Confirm"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="ThisUser.Confirm"></div>
+                        </div>
+                        <div  class="row">
+                            <div class="col-3 mt-2 mb-2">
+                                <input value="Submit" type="submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col mt-4 border border-dark">Login
+                    <form asp-action="Logged" asp-controller="Home" method="post">
+                        <div class="row">
+                            <span asp-validation-for="ThisLoginUser.Email"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="ThisLoginUser.Email"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="ThisLoginUser.Email"></div>
+                        </div>
+                        <div class="row">
+                            <span asp-validation-for="ThisLoginUser.Password"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="ThisLoginUser.Password"></label></div>
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="ThisLoginUser.Password"></div>
+                        </div>
+                        <div  class="row">
+                            <div class="col-3 mt-2 mb-2">
+                                <input value="Submit" type="submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

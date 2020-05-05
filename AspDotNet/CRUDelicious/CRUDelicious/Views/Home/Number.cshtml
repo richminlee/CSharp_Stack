@@ -1,0 +1,34 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col"><a href="/">Home</a></div>
+                </div>
+                <div class="row">
+                    <div class="col text-center"><h1>@Model.Name</h1></div>
+                </div>
+                <div class="row pb-4 border-bottom border-dark">
+                    <div class="col text-center"><h3>@Model.Chef</h3></div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="row mt-4">
+                    <div class="col">@Model.Description</div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col"><strong>Calories:</strong> @Model.Calories</div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col"><strong>Tastiness:</strong> @Model.Tastiness</div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col text-center"><button><a href="/delete/@Model.DishId">Delete</a></button></div>
+                    <div class="col text-center"><button><a href="/edit/@Model.DishId">Edit</a></button></div>
+                </div>
+            </div>
+        </div>
+    </div>

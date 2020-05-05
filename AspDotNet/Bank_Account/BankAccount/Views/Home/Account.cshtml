@@ -1,0 +1,55 @@
+@model Transaction
+<a href="logout">Logout</a>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-8"><h1>Welcome,  @ViewBag.Us.FirstName @ViewBag.Us.LastName</h1></div>
+                <div class="col-4">Current balance:  <span style="width:50px; border: solid #000000">@ViewBag.Us.Balance.ToString("0.00")</span> </div>
+            </div>
+            <form asp-action="Update" asp-controller="Home" method="post">
+            <div class="row">
+                <div class="col">
+                    
+                        <div class="row">
+                            <span asp-validation-for="Amount"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="Amount"></label></div> 
+                            <div class="col-4 ml-2 mt-2 mb-2"><input style="width: 200px;" type="number" asp-for="Amount"></div>
+                            <div class="col-3 mt-2 mb-2">
+                                <input value="Submit" type="submit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+
+
+                    <div class="row m-4">
+                        <div class="col">
+
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                </tr>
+                            @foreach (var l in ViewBag.thisTrans)
+                            {
+                                    <tr>
+                                        <td>@l.Amount.ToString("0.00")</td>
+                                        <td>@l.CreatedAt</td>
+                                    </tr>
+                            }
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+@model Sport
+<header>
+    <div class="row border-bottom border-dark mb-4">
+        <div class="col-8"><h1>Dojo Activity Center</h1></div>
+        <div class="col-4"><a href="/dashboard">Home</a> | <a href="logout">Log Out</a></div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form asp-action="CreateSport" asp-controller="Home" method="post">
+                <div class="row">
+                    <div class="col mt-4">
+                                <div class="row">
+                                    <br><span asp-validation-for="SportName"></span><br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 mt-2 mb-2"><label asp-for="SportName"></label></div> 
+                                    <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="SportName"></div>
+                                </div>
+                    </div>
+                    <div class="col mt-4">
+                                <div class="row">
+                                    <br><span asp-validation-for="Date"></span><br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 mt-2 mb-2"><label asp-for="Date.TimeOfDay">Time: </label></div> 
+                                    <div class="col-4 mt-2 mb-2"><input type="time" style="width: 200px;" asp-for="Date.TimeOfDay"></div>
+                                </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col mt-4">
+                        <div class="row">
+                            <br><span asp-validation-for="Date"></span><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="Date.Date">Date: </label></div> 
+                            <div class="col-4 mt-2 mb-2"><input type="date" style="width: 200px;" asp-for="Date.Date"></div>
+                        </div>
+                    </div>
+                    <div class="col mt-4">
+                        <div class="row">
+                            <br><span asp-validation-for="Duration"></span><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="Duration">Duration: </label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 100px;" asp-for="Duration"></div>
+                            <div class="col-2 mt-2 mb-2">
+                                    <select style="width: 100px; height:30px" asp-for="DurationHour">
+                                        <option value="Days">Days</option>
+                                        <option value="Hours">Hours</option>
+                                        <option value="Minutes">Minutes</option>
+                                    </select>
+                            </div>
+                        </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col mt-4">
+                        <div class="row">
+                            <br><span asp-validation-for="Description"></span><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="Description">Description: </label></div> 
+                            <div class="col-4 mt-2 mb-2"><textarea style="resize: none;" asp-for="Description" cols="65" rows="6"></textarea></div>
+                        </div>
+                        <div  class="row">
+                            <div class="col-3 mt-2 mb-2">
+                                <input value="Create Activity" type="submit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

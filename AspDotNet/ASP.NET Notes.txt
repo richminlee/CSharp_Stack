@@ -1,0 +1,594 @@
+dotnet new mvc --no-https -o DojoSurvey
+dotnet add package Pomelo.EntityFrameworkCore.MySql -v 2.2.0
+
+//MyContext.cs(in Models Folder)
+
+    using Microsoft.EntityFrameworkCore; 
+    namespace MyProject.Models
+    {
+        public class MyContext : DbContext
+        {
+            public MyContext(DbContextOptions options) : base(options) { }
+            
+            // "users" table is represented by this DbSet "Users"
+	    //(Convention dictates that the names of these tables is the plural of your Model.) 
+            public DbSet<User> Users {get;set;}
+        }
+    }
+
+//appsettings.json
+//Change Database Name each Project
+{
+    "DBInfo":
+    {
+        "Name": "MySQLconnect",
+        "ConnectionString": "server=localhost;userid=root;password=root;port=3306;database=mydb;SslMode=None"
+    }
+}
+//StartUp.cs
+using Microsoft.EntityFrameworkCore;
+using MyProject.Models;
+services.AddDbContext<MyContext>(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
+services.AddSession();
+app.UseSession();
+
+
+//User.cs(example Model)
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System;
+    using System.ComponentModel.DataAnnotations.Schema;
+    namespace MyProject.Models
+    {
+        public class User
+        {
+            // auto-implemented properties need to match the columns in your table
+            // the [Key] attribute is used to mark the Model property being used for your table's Primary Key
+            [Key]
+            public int UserId { get; set; }
+            // MySQL VARCHAR and TEXT types can be represeted by a string
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Email { get; set; }
+            public string Password { get; set; }
+            // The MySQL DATETIME type can be represented by a DateTime
+            public DateTime CreatedAt {get;set;} = DateTime.Now;
+            public DateTime UpdatedAt {get;set;} = DateTime.Now;
+        }
+    }
+//HomeController.cs
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
+namespace MyProject.Controllers
+{
+    public class HomeController : Controller
+    {
+	private MyContext dbContext;                       (ADD)
+        public HomeController(MyContext context)           (ADD)
+        {
+            dbContext = context;                            (ADD)
+        }
+        [HttpGet("")]
+        public IActionResult Index()
+        {
+            // Get all Users
+            List<User> AllUsers = dbContext.Users.ToList();           (Example)
+    
+			// Get Users with the LastName "Jefferson"
+			List<User> Jeffersons = dbContext.Users.Where(u => u.LastName == "Jefferson");             (Example)
+    		// Get the 5 most recently added Users
+            List<User> MostRecent = dbContext.Users                  (Example)
+    			.OrderByDescending(u => u.CreatedAt)            
+    			.Take(5)
+    			.ToList();
+			return View()
+     	}
+	[HttpPost("create")]
+	public IActionResult CreateUser(User newUser)
+	{
+    	// We can take the User object created from a form submission
+		// And pass this object to the .Add() method
+    	dbContext.Add(newUser);
+    	// OR dbContext.Users.Add(newUser);
+    	dbContext.SaveChanges();
+    	// Other code
+	}
+	[HttpGet("update/{userId}")]
+	public IActionResult UpdateUser(int userId)
+	{
+
+    	User RetrievedUser = dbContext.Users.FirstOrDefault(user => user.UserId == userId);
+
+    	RetrievedUser.Name = "New name";
+    	RetrievedUser.UpdatedAt = DateTime.Now;
+    
+
+    	dbContext.SaveChanges();
+	}
+	[HttpGet("delete/{userId}")]
+	public IActionResult DeleteUser(int userId)
+	{
+    	// Like Update, we will need to query for a single user from our Context object
+    	User RetrievedUser = dbContext.Users.SingleOrDefault(user => user.UserId == userId);
+    
+    	// Then pass the object we queried for to .Remove() on Users
+    	dbContext.Users.Remove(RetrievedUser);
+    
+    	// Finally, .SaveChanges() will remove the corresponding row representing this User from DB 
+    	dbContext.SaveChanges();
+    	// Other code
+	}
+    }  
+}
+
+
+
+
+//Initial Migration
+dotnet ef migrations add FirstMigration
+
+//Apply Migration to Database
+dotnet ef database update
+
+//Migrations
+dotnet ef migrations add YourMigrationName
+
+//Troubleshooting Migrations(detailed rundown of what went wrong in your migration)
+dotnet ef migrations add YourMigrationName -v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+__________________________________
+dotnet new web --no-https -o ProjectName
+    dotnet new viewimports -o Views
+    // and
+    dotnet new viewstart -o Views
+    dotnet new viewimports -o Views/
+_______________________________________
+setx ASPNETCORE_ENVIRONMENT Development
+_________________________________________
+dotnet watch run
+_______________________________
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/css/style.css"/>
+_____________________________________
+REMOVE from Startup.cs file:
+
+services.Configure<CookiePolicyOptions>(options =>
+{
+	// This lambda determines whether user consent for non-essential cookies is needed for a given request.
+	options.CheckConsentNeeded = context => true;
+	options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+-------------------
+app.UseHttpsRedirection();
+-------------------------------
+app.UseCookiePolicy();
+------------------------------
+
+REMOVE from  your _Layout.cs file:
+        <partial name="_CookieConsentPartial" />
+
+_______________________________________
+
+using System;
+using Microsoft.AspNetCore.Mvc;
+    namespace YourNamespace.Controllers
+    {
+        public class HomeController : Controller
+        {
+
+            [HttpGet("")]
+            public ViewResult Index()
+            {
+                return View();
+            }
+        }
+    }
+________________________________________________________________________________
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddMvc();
+    }
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+
+	app.UseStaticFiles();
+        app.UseMvc();
+    }
+___________________________________________________________________________________
+    public class Startup
+    {
+        // other code in Startup
+        public Startup(IHostingEnvironment env)
+        {
+            // run this in the debugger, and inspect the "env" object! You can use this object to tell you // the root path of your application, for the purposes of reading from local files, and for
+            // checking environment variables - such as if you are running in Development or Production
+            
+            Console.WriteLine(env.ContentRootPath);
+            Console.WriteLine(env.IsDevelopment());
+        }
+    }
+________________________________________________________________________________________
+// Other code
+[HttpGet]
+[Route("")]
+// GET requests to "localhost:5000" go here
+public string Index()
+{
+    // Method body
+}
+[HttpGet("about")]
+// GET requests to "localhost:5000/about" go here
+public string About()
+{
+    // Method body
+}
+[HttpPost]
+[Route("submission")]
+// POST requests to "localhost:5000/submission" go here
+// (Don't worry about form submissions for now, we will get to those later!)
+public string FormSubmission(string formInput)
+{
+    // Method body
+}
+_________________________________________________________________________________
+// Other code
+[HttpGet]
+[Route("{name}")]
+publiccopy string Index(string name)
+{
+    return $"Hello {name}!";
+}
+[HttpGet]
+[Route("pizza/{topping}")]
+public string PizzaParty(string topping)
+{
+    return $"Who's ready for a {topping} Pizza!";
+}
+[HttpGet]
+[Route("user/{name}/{location}/{age}")]
+public string UserInfo(string name, string location, int age)
+{
+    return $"{name}, aged {age}, is from {location}";
+}
+________________________________________________________________________________
+// Other code
+public class FirstController : Controller
+{
+    //  Other code
+    public RedirectToActionResult Method()
+    {
+        // Will redirect to the "OtherMethod" method
+        return RedirectToAction("OtherMethod");
+    }
+    // Other code
+    public ViewResult OtherMethod()
+    {
+        return View();
+    }
+}
+___________________________________________________________
+// Other code
+public RedirectToActionResult Method()
+{
+    // The anonymous object consists of keys and values
+    // The keys should match the parameter names of the method being redirected to
+    return RedirectToAction("OtherMethod", new { Food = "sandwiches", Quantity = 5 });
+}
+ 
+[HttpGet]
+[Route("other/{Food}/{Quantity}")]
+public ViewResult OtherMethod(string Food, int Quantity)
+{
+    Console.WriteLine($"I ate {Quantity} {Food}.");
+    // Writes "I ate 5 sandwiches."
+}
+_________________________________________________________
+// Other code
+public class FirstController : Controller
+{
+    public RedirectToActionResult Method()
+    {
+        return RedirectToAction("OtherMethod", "Second");
+    }
+}
+-------------------------------------------------
+public class SecondController : Controller
+{
+    public ViewResult OtherMethod()
+    {
+        return View();
+    }
+}
+___________________________________________________________
+// In your controller class
+[HttpGet("")]
+public ViewResult Index()
+{
+    return View();
+}
+[HttpGet("{favoriteResponse}")]
+public IActionResult ItDepends(string favoriteResponse)
+{
+    if(favoriteResponse == "Redirect")
+    {
+    	return RedirectToAction("Index");
+    }
+    else if(favoriteResponse == "Json")
+    {
+        return Json(new {FavoriteResponse = favoriteResponse});
+    }
+    return View();
+}
+__________________________________________________
+// In your controller class
+[HttpGet("")]
+public ViewResult Index()
+{
+    return View();
+}
+[HttpGet("{favoriteResponse}")]
+public IActionResult ItDepends(string favoriteResponse)
+{
+    if(favoriteResponse == "Redirect")
+    {
+    	return RedirectToAction("Index");
+    }
+    else if(favoriteResponse == "Json")
+    {
+        return Json(new {FavoriteResponse = favoriteResponse});
+    }
+    return View();
+}
+_________________________________________________________
+wwwroot
+>css
+>>style.css
+>js
+
+--------
+<link rel="stylesheet" href="~/css/style.css"/>
+___________________________________________________________
+[HttpGet]
+[Route("")]
+public IActionResult Index()
+{
+    // Here we assign the value "Hello World!" to the property .Example
+    // Property names are arbitrary and can be whatever you like
+    ViewBag.Example = "Hello World!";
+    return View();
+}
+--------------------------------
+<h1>@ViewBag.Example</h1>
+----------------------------
+@{
+    string LocalString = ViewBag.Example + " Good to see you!";
+}
+<h1>@LocalString</h1>
+____________________________________________________
+
+<form action="method" method="post">
+    <input type="text" name="TextField"/>
+    <input type="number" name="NumberField"/>
+    <button type="submit">Submit</button>
+</form>
+_____________________________________________
+// remember to use [HttpPost] attributes!
+[HttpPost]
+[Route("method")]
+public IActionResult Method(string TextField, int NumberField)
+{
+    // Do something with form input
+}
+______________________________________________________
+namespace YourNamespace.Models
+{
+    public class User
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+}
+_____________________________________________________
+MODEL PAGE
+
+namespace MyCoolProj.Models
+{
+    public class User
+    {
+        public string FirstName {get;set;}
+        public string LastName {get;set;}
+    }
+}
+VIEWS PAGE
+ @model MyCoolProj.Models.User
+
+    <h1>Super sweet page for @Model.FirstName @Model.LastName</h1>
+
+CONTROLLER PAGE
+    public IActionResult UserDetail()
+    {
+        // While being hard-coded here, this user instance will eventually come from our DB
+        User someUser = new User()
+        {
+            FirstName = "Sally",
+            LastName = "Sanderson"
+        };
+        // Here we pass this instance to our View
+        return View(someUser);
+        // If we also need to include the name of our View, we pass our instance as a second argument
+        // return View("OtherView", someUser);
+    }
+______________________________________________________________________
+using System.ComponentModel.DataAnnotations;
+ 
+namespace YourNamespace.Models
+{
+    public class User
+    {
+        [Required]
+        [MinLength(3)]
+        public string Username { get; set; }
+ 
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+ 
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+    }
+}
+________________________________________________________________
+                // if(ModelState.IsValid)
+                // {
+                    Survey person = new Survey()
+                    {
+                        Name = mysurvey.Name,
+                        Location = mysurvey.Location,
+                        Language = mysurvey.Language,
+                        Comment = mysurvey.Comment
+                    };
+                    return View("Success", person);
+                // }
+                // else{
+                //     return View();
+                // }
+_________________________________________________________________________
+Views
+>Home
+>>Index.cshtml
+>>Nav Partial.cshtml
+
+(Loading a Partial)
+<partial name="NavPartial"/>
+<h1>Welcome to this site!</h1>
+<p>The rest of your View content here...</p>
+_________________________________________________________________
+<partial name="NameOfPartial" view-data="ViewData"/>
+----------------------------------------------------
+// using statements
+public class HomeController : Controller
+{
+    [HttpGet("")]
+    public IActionResult Index()
+    {
+    	// assigning ViewBag properties for the Index view
+    
+        ViewBag.CurrentTime = DateTime.Now;
+        ViewBag.Message = "The Time is:";
+        return View();
+    }
+}  
+-----------------------------------------------------
+<h1>Home Page</h1>
+<partial name="TimeKeeperPartial" view-data="ViewData"/> 
+--------------------------------------------------
+<h1>Keeping Time...</h1>
+<p>@ViewBag.Message @ViewBag.CurrentTime</p>
+________________________________________________________________
+<partial name="NameOfPartial" model="ModelObject"/>
+--------------------------------------------------
+PODUCTS.CS
+publiccopy class Product
+{
+    public string ProductName {get;set;}
+    public double Price {get;set;}
+}
+--------------------------------
+ProductPartial.cshtml
+@model Product
+<h1>Name: @Model.ProductName</h1>
+<h1>Price: @Model.Price</h1>
+----------------------------------
+Index.cshtml
+@{
+    Product productObject = new Product(){ProductName="Boombox", Price=120.00};    
+}
+<h1>Home Page</h1>
+<partial name="ProductPartial" model="productObject"/> 
+____________________________________________________________
+public class HomeController : Controller
+{
+    [HttpGet("")]
+    public IActionResult Index()
+    {
+        return View();
+    }
+    [HttpPost("create/product")]
+    public IActionResult CreateProduct(Product newProduct)
+    {
+        if(ModelState.IsValid)
+        {
+            return RedirectToAction("Success");
+        }
+        return View("Index");
+    }
+    [HttpPost("create/user")]
+    public IActionResult CreateUser(User newUser)
+    {
+        if(ModelState.IsValid)
+        {
+            return RedirectToAction("Success");
+        }
+        return View("Index");
+    }
+    [HttpGet("success")]
+    public string Success()
+    {
+        return "You have successfully submitted!";
+    }
+}
+_____________________________________________________________
+// *Inside controller methods*
+// To store a string in session we use ".SetString"
+// The first string passed is the key and the second is the value we want to retrieve later
+HttpContext.Session.SetString("UserName", "Samantha");
+// To retrieve a string from session we use ".GetString"
+string LocalVariable = HttpContext.Session.GetString("UserName");
+ 
+// To store an int in session we use ".SetInt32"
+HttpContext.Session.SetInt32("UserAge", 28);
+// To retrieve an int from session we use ".GetInt32"
+int? IntVariable = HttpContext.Session.GetInt32("UserAge");
+----------------------------------------------------------------
+HttpContext.Session.Clear();
+________________________________________________________________
+// in your Controller
+ViewBag.Count = HttpContext.Session.GetInt32("count");
+------------------------------------------------------------
+<!-- in your View -->
+<h2>You have clicked the button @ViewBag.Count</h2>
+_______________________________________________________

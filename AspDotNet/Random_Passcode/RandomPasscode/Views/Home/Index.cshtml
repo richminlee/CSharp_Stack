@@ -1,0 +1,37 @@
+﻿
+<div class="container text-center">
+        <div class="row">
+            <div class="col-4"> </div>
+            <div class="col-4 p-2">Random Word (attempt #@Model[1])</div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 border border-dark p-4">@Model[0]</div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 m-2 p-4">
+                <form action="/random/@Model[1]" method="POST">
+                <button type="submit" name="generate">Generate</button>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 m-2 p-4">
+                <form action="/reset" method="POST">
+                <button type="submit" name="reset">Reset</button>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>

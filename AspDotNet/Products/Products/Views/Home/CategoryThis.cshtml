@@ -1,0 +1,49 @@
+@model ShowAllWrapper
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col text-center"><h1>@Model.ThisCategory.Name</h1></div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10"><h2>Products:</h2></div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <ul>
+                            @foreach(var cat in Model.ThisCategory.ProductsfromCategory)
+                            {
+                                <li>@cat.Product.Name</li>
+                            }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <form asp-action="AddProduct" asp-controller="Home" asp-route-categoryid="@Model.ThisCategory.CategoryId" method="post">
+                        <div class="row mt-2 mb-2">
+                            <div class="col"><label asp-for="Association.ProductId"><h2>Add Product: </h2></label></div> 
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col">
+                                <select style="width: 200px;" asp-for="Association.ProductId">
+                                    @foreach(var l in Model.ProdsNotInCat)
+                                    {
+                                    <option value="@l.ProductId">@l.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col-2 m-2"></div>
+                            <div class="col-4"><input value="Add" type="submit"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+@model Dish
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col mt-4 text-center"><h1>Edit a Dish!</h1></div>
+            </div>
+            <div class="row">
+                <div class="col"><a href="/">Home</a></div>
+            </div>
+
+            <form asp-action="Edited" asp-controller="Home" asp-route-DishId="@Model.DishId" method="post">
+                <div class="row">
+                    <div class="col mt-4">
+                        <div class="row">
+                            <div class="col-4">
+                            <br><span class="row" asp-validation-for="Chef"></span><br>
+                            <div class="col"><label asp-for="Chef"></label></div> 
+                            <div class="col"><input style="width: 200px;" asp-for="Chef"></div>
+                            <br><span class="row" asp-validation-for="Name"></span><br>
+                            <div class="col"><label asp-for="Name"></label></div> 
+                            <div class="col"><input style="width: 200px;" asp-for="Name"></div>
+                            <br><span class="row" asp-validation-for="Calories"></span><br>
+                            <div class="col"><label asp-for="Calories"></label></div> 
+                            <div class="col"><input style="width: 200px;" asp-for="Calories"></div>
+                            </div>
+                            <div class="col-4">
+                            <br><span class="row" asp-validation-for="Tastiness"></span><br>
+                            <div class="col"><label asp-for="Tastiness"></label></div>
+                            <div class="col">
+                                <select style="width: 50px;" asp-for="Tastiness">
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                </select>
+                            </div>
+                            </div>
+                            <div class="col-4">
+                            <br><span class="row" asp-validation-for="Description"></span><br>
+                            <div class="col"><label asp-for="Description"></label></div>
+                            <div class="col-12"><textarea style="resize: none;" asp-for="Description" cols="25" rows="6"></textarea></div>
+                            <div  class="row m-4">
+                            <input value="Edit Dish" type="submit">
+                            </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

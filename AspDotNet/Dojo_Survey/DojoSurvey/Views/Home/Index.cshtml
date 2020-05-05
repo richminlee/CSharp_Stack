@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <form action='/result' method='post'>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-5 border border-dark mt-4">
+                    <div class="row m-4">
+                        <div class="col-6">Your Name: </div>
+                        <div style="float: right;" class="col-6"><input style="width: 200px;" type='text' name='name'></div>
+                    </div>
+                    <div class="row m-4">
+                        <div class="col-6">Dojo Location: </div>
+                        <div style="float: right;" class="col-6">
+                            <select style="width: 200px;" name='location'>
+                                <option value="Seattle">Seattle, WA</option>
+                                <option value="San Francisco">San Francisco, CA</option>
+                                <option value="Austin">Austin, TX</option>
+                                <option value="NYC">NYC, NY</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row m-4">
+                        <div class="col-6">Favorite Language: </div>
+                        <div style="float: right;" class="col-6">
+                            <select style="width: 200px;" name='language'>
+                                <option value="Javascript">Javascript</option>
+                                <option value="Python">Python</option>
+                                <option value="C#/.Net">C#/.Net</option>
+                                <option value="MERN">MERN</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row m-4">
+                        <div class="col-6">Comment (optional): </div>
+                    </div>
+                    <div class="row m-4">
+                        <div class="col-12"><textarea name="comment" cols="54" rows="3"></textarea></div>
+                    </div>
+                    <div style="float: right;"  class="row m-4">
+                        <button type='submit'>Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@model User
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6 mt-4 text-center"><h1>Register</h1></div>
+            </div>
+            <form asp-action="New" asp-controller="Home" method="post">
+                <div class="row">
+                    <div class="col mt-4">
+                        <div class="row">
+                            <br><span asp-validation-for="FirstName"></span><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="FirstName"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="FirstName"></div>
+                        </div>
+                        <div class="row">
+                            <br><span asp-validation-for="LastName"></span><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="LastName"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="LastName"></div>
+                        </div>
+                        <div class="row">
+                            <br><span asp-validation-for="Email"></span><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="Email"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="Email"></div>
+                        </div>
+                        <div class="row">
+                            <br><span asp-validation-for="Password"></span><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="Password"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="Password"></div>
+                        </div>
+                        <div class="row">
+                            <br><span asp-validation-for="Confirm"></span><br>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 mt-2 mb-2"><label asp-for="Confirm"></label></div> 
+                            <div class="col-4 mt-2 mb-2"><input style="width: 200px;" asp-for="Confirm"></div>
+                            <div class="col-3 mt-2 mb-2"><a href="/login">Already Registered?</a></div>
+                        </div>
+                        <div  class="row">
+                            <div class="col-3 mt-2 mb-2">
+                                <input value="Submit" type="submit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

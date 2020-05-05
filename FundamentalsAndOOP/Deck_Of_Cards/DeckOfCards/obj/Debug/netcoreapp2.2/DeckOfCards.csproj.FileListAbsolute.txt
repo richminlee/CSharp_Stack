@@ -1,0 +1,11 @@
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\obj\Debug\netcoreapp2.2\DeckOfCards.csprojAssemblyReference.cache
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\obj\Debug\netcoreapp2.2\DeckOfCards.csproj.CoreCompileInputs.cache
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\obj\Debug\netcoreapp2.2\DeckOfCards.AssemblyInfoInputs.cache
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\obj\Debug\netcoreapp2.2\DeckOfCards.AssemblyInfo.cs
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\bin\Debug\netcoreapp2.2\DeckOfCards.deps.json
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\bin\Debug\netcoreapp2.2\DeckOfCards.runtimeconfig.json
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\bin\Debug\netcoreapp2.2\DeckOfCards.runtimeconfig.dev.json
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\bin\Debug\netcoreapp2.2\DeckOfCards.dll
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\bin\Debug\netcoreapp2.2\DeckOfCards.pdb
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\obj\Debug\netcoreapp2.2\DeckOfCards.dll
+C:\Users\leeri\Desktop\Coding_Dojo\C#Stack\DeckOfCards\obj\Debug\netcoreapp2.2\DeckOfCards.pdb

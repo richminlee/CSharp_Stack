@@ -1,0 +1,40 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 text-center"><h1>Chefs | <a href="/dishes">Dishes</a></h1></div>
+                <div class="col-2"><a href="/new">Add a Chef</a></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row border-bottom border-dark p-4">
+                    <div class="col"><h3>Check out our roster of Chefs!</h3></div>
+                    </div>
+                    <div class="row m-4">
+                        <div class="col">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th># of Dishes</th>
+                                    <th>Option</th>
+                                </tr>
+                                @foreach(var l in Model)
+                                {
+                                    <tr>
+                                        <td>@l.FirstName @l.LastName</td>
+                                        <td>@l.Age</td>
+                                        <td>@l.CreatedDishes.Count</td>
+                                        <td><a href="delete/@l.ChefId">Delete</a></td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
