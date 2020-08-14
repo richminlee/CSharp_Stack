@@ -98,20 +98,21 @@ namespace DeckOfCards
         static void Main(string[] args)
         {
             Deck myDeck = new Deck();
-            // myDeck.Write();
-            // myDeck.Shuffle();
-            // myDeck.Write();
-            // myDeck.Reset();
-            // myDeck.Write();
+            //myDeck.Write();
+            //myDeck.Shuffle();
+            //myDeck.Write();
+            //myDeck.Reset();
+            //myDeck.Write();
             myDeck.Shuffle();
-            // Console.WriteLine(myDeck.Deal().stringVal);
-            // Console.WriteLine(myDeck.Deal().stringVal);
-            // Console.WriteLine(myDeck.cards.Count);
+            Console.WriteLine($"A {myDeck.Deal().stringVal} has been delt to the opponent");
+            Console.WriteLine($"A {myDeck.Deal().stringVal} has been delt to the opponent");
+            Console.WriteLine($"You have {myDeck.cards.Count} cards left in the deck");
             Player Richard = new Player("Richard");
-            Richard.draw(myDeck);
-            Richard.draw(myDeck);
-            Console.WriteLine(Richard.Discard(0).val);
-            Console.WriteLine(Richard.Discard(0).val);
+            Console.WriteLine($"You have drawn a {Richard.draw(myDeck).val}");
+            Console.WriteLine($"You have drawn a {Richard.draw(myDeck).val}");
+            Console.WriteLine($"You have {myDeck.cards.Count} cards left in the deck");
+            Console.WriteLine($"You discarded {Richard.Discard(0).val}");
+            Console.WriteLine($"You discarded {Richard.Discard(0).val}");
         }
     }
 }
